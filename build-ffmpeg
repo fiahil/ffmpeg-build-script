@@ -354,30 +354,6 @@ if build "zlib" "1.2.12"; then
   build_done "zlib" "1.2.12"
 fi
 
-if build "m4" "1.4.19"; then
-  download "https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.gz"
-  execute ./configure --prefix="${WORKSPACE}"
-  execute make -j $MJOBS
-  execute make install
-  build_done "m4" "1.4.19"
-fi
-
-if build "autoconf" "2.71"; then
-  download "https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.gz"
-  execute ./configure --prefix="${WORKSPACE}"
-  execute make -j $MJOBS
-  execute make install
-  build_done "autoconf" "2.71"
-fi
-
-if build "automake" "1.16.5"; then
-  download "https://ftp.gnu.org/gnu/automake/automake-1.16.5.tar.gz"
-  execute ./configure --prefix="${WORKSPACE}"
-  execute make -j $MJOBS
-  execute make install
-  build_done "automake" "1.16.5"
-fi
-
 if build "libtool" "2.4.6"; then
   download "https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz"
   execute ./configure --prefix="${WORKSPACE}" --enable-static --disable-shared
@@ -400,14 +376,6 @@ if $NONFREE_AND_GPL; then
     build_done "openssl" "1.1.1m"
   fi
   CONFIGURE_OPTIONS+=("--enable-openssl")
-fi
-
-if build "cmake" "3.23.1"; then
-  download "https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1.tar.gz"
-  execute ./configure --prefix="${WORKSPACE}" --parallel="${MJOBS}" -- -DCMAKE_USE_OPENSSL=OFF
-  execute make -j $MJOBS
-  execute make install
-  build_done "cmake" "3.23.1"
 fi
 
 ##
@@ -497,7 +465,7 @@ fi
 
 if $NONFREE_AND_GPL; then
   if build "x265" "3.5"; then
-    download "https://github.com/videolan/x265/archive/Release_3.5.tar.gz" "x265-3.5.tar.gz" # This is actually 3.4 if looking at x265Version.txt
+    download "https://bitbucket.org/multicoreware/x265_git/get/master.tar.gz" "x265-3.5.tar.gz" # This is actually 3.4 if looking at x265Version.txt
     cd build/linux || exit
     rm -rf 8bit 10bit 12bit 2>/dev/null
     mkdir -p 8bit 10bit 12bit
