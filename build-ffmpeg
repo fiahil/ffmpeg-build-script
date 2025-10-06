@@ -619,7 +619,7 @@ if $NONFREE_AND_GPL; then
 fi
 
 if $NONFREE_AND_GPL; then
-  if build "x265" "4.1"; then
+  if build "x265" "4.0"; then
     download "https://bitbucket.org/multicoreware/x265_git/downloads/x265_$CURRENT_PACKAGE_VERSION.tar.gz" "x265-$CURRENT_PACKAGE_VERSION.tar.gz" # This is actually 3.4 if looking at x265Version.txt
     cd build/linux || exit
     rm -rf 8bit 10bit 12bit 2>/dev/null
